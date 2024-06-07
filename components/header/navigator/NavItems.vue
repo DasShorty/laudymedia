@@ -6,8 +6,8 @@ import NavItem from "@/components/header/navigator/NavItem.vue";
   <nav>
     <div class="nav-items">
       <NavItem text="Home" link="/"></NavItem>
-      <NavItem text="Projekte" link="/projects"></NavItem>
-      <NavItem text="Kontakt" link="/contact"></NavItem>
+      <NavItem text="Projekte" link="/projekte"></NavItem>
+      <NavItem text="Kontakt" link="/kontakt"></NavItem>
     </div>
   </nav>
 </template>
