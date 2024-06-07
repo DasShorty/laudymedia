@@ -6,7 +6,7 @@
 
   <div class="welcome">
 
-    <img src="@/assets/image/welcome/welcome.png" alt="Welcome">
+    <img src="@/assets/image/welcome/welcome.png" class="welcome-img" alt="Welcome">
     <hr>
     <div class="welcome-text">
       <h3>Ich bin <span style="color: var(--purple)">Dave</span>!</h3>
@@ -29,6 +29,11 @@
 
 <style scoped>
 
+hr {
+  border-radius: 1rem;
+  border-color: var(--hr-color);
+}
+
 .welcome {
   display: flex;
   flex-direction: row;
@@ -42,7 +47,7 @@ h3 {
   font-size: 2.25rem;
 }
 
-img {
+.welcome-img img {
   margin-right: 2.188rem;
   height: 23.688rem;
   width: auto;
@@ -61,8 +66,8 @@ img {
   background: linear-gradient(90deg, #49315B 0%, #101010 100%);
   align-items: center;
   justify-content: center;
-  padding-left: 0.2rem;
-  padding-right: 0.2rem;
+  padding-left: 0.05rem;
+  padding-right: 0.05rem;
   width: 12rem;
   height: 1.875rem;
 }

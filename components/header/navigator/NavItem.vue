@@ -6,7 +6,7 @@ export default {
       type: String,
       required: true
     },
-    href: {
+    link: {
       type: String,
       required: true
     }
@@ -15,7 +15,7 @@ export default {
 </script>
 
 <template>
-  <RouterLink :to="this.href" class="nav-item" :class="{'active': $route.path === this.href}"><p id="nav-text">{{ text }}</p>
+  <RouterLink :to="this.link" class="nav-item" :class="{'active': $route.path === this.link}"><p id="nav-text">{{ text }}</p>
   </RouterLink>
 </template>
 

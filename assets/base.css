@@ -3,6 +3,7 @@
     --page-background: linear-gradient(#171717 0%, #0A0A0A 100%);
     --nav-page-title-color: #6000DA;
     --purple: #8E5BB5;
+    --hr-color: #404040;
 }
 
 @media (prefers-color-scheme: dark) {

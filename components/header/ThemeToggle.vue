@@ -9,10 +9,10 @@ export default {
 
     changePosition() {
       if (this.darkMode === true) {
-        document.getElementById("toggle").style.animation = "move 1s ease-in-out";
+        document.getElementById("toggle").style.animation = "move 0.3s ease-in-out";
         document.getElementById("toggle").style.paddingLeft = "26px";
       } else {
-        document.getElementById("toggle").style.animation = "move 1s ease-in-out alternate";
+        document.getElementById("toggle").style.animation = "move 0.3s ease-in-out alternate";
         document.getElementById("toggle").style.paddingLeft = "4px";
       }
     },
@@ -51,8 +51,8 @@ export default {
   padding-left: 4px;
   display: flex;
   align-items: center;
-  transition-duration: 1s;
-  animation-duration: 1s;
+  transition-duration: 0.3s;
+  animation-duration: 0.3s;
   margin-left: 5px;
   margin-right: 5px;
 }

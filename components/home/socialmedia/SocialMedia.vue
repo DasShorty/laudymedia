@@ -1,11 +1,49 @@
 <script setup lang="ts">
 
+import Achievements from "~/components/home/socialmedia/achievements/Achievements.vue";
+import Aims from "~/components/home/socialmedia/aims/Aims.vue";
 </script>
 
 <template>
-  $END$
+
+  <div class="social-media-container">
+
+    <span>Social Media</span>
+    <div class="achievements">
+      <Achievements></Achievements>
+    </div>
+    <div class="aims">
+      <Aims></Aims>
+    </div>
+
+  </div>
+
 </template>
 
 <style scoped>
+
+.social-media-container {
+  margin-top: 6rem;
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+}
+
+.social-media-container span {
+  font-size: 8rem;
+  color: #171717;
+  font-family: "ZenDots", sans-serif;
+  text-transform: uppercase;
+}
+
+.achievements {
+  margin-top: -6rem;
+}
+
+.aims {
+  margin-top: 4rem;
+  margin-bottom: 10rem;
+}
 
 </style>

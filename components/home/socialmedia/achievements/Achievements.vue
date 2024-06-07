@@ -1,13 +1,12 @@
 <script setup lang="ts">
 
-import Achievement from "~/components/home/socialmedia/Achievement.vue";
+import Achievement from "~/components/home/socialmedia/achievements/Achievement.vue";
 </script>
 
 <template>
 
   <div class="title">
-    <h3>Errungenschaften</h3>
-    <hr>
+    <h3>Errungenschaften <hr></h3>
   </div>
 
   <div class="achievements-list">
@@ -25,17 +24,20 @@ h3 {
 }
 
 hr {
+  margin-top: -0.3rem;
   border-radius: 1rem;
   border-color: var(--hr-color);
 }
 
 .achievements-list {
+  margin-top: 5rem;
   background-color: #101010;
   border: 1px solid #2E2E2E;
 }
 
 .title {
-  text-align: center;
+  display: flex;
+  justify-content: center;
 }
 
 </style>
