@@ -1,32 +1,62 @@
 <script setup lang="ts">
 
 defineProps({
-  image: {
-    type: String,
-    required: true
-  },
-  title: {
-    type: String,
-    required: true
-  },
-  description: {
-    type: String,
-    required: true
-  },
-  links: {
-    type: Array,
-    required: true
-  }
+  data: {type: Object, required: true},
 })
-
 </script>
 
 <template>
 
-
+  <div class="container">
+    <img :src="data.imageRef" alt="Project Image">
+    <hr>
+    <h3>{{ data.title }}</h3>
+    <p>{{ data.description }}</p>
+  </div>
 
 </template>
 
 <style scoped>
+
+
+.container {
+  background-color: rgba(26, 26, 26, 0.8);
+  width: 20rem;
+  border-radius: 2%;
+}
+
+.container:hover {
+  cursor: pointer;
+}
+
+.container img {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  width: 20rem;
+  height: auto;
+  border-radius: 2%;
+}
+
+hr {
+  margin-top: 1rem;
+  margin-bottom: 1rem;
+  border-color: rgba(145, 70, 255, 0.9);
+}
+
+h3 {
+  font-size: 2rem;
+  color: #8E5BB5;
+  background: -webkit-linear-gradient(90deg, #9146FF 10%, #999999 90%);
+  font-weight: bold;
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  margin-left: 1rem;
+}
+
+p {
+  margin: 1rem;
+}
+
 
 </style>

@@ -90,6 +90,7 @@ p {
   height: 3.875rem;
   width: 20rem;
   border-radius: 1.938rem;
+  transition: 2s;
 }
 
 .icon {

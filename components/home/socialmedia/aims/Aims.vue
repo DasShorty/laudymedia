@@ -13,8 +13,8 @@ import Aim from "~/components/home/socialmedia/aims/Aim.vue";
   <div class="aims-list">
 
     <div class="left-side">
-      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='52'
-           :final-count='100' bar-color="#48247D"></Aim>
+      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='413'
+           :final-count='500' bar-color="#48247D"></Aim>
       <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='70'
            :final-count='100' bar-color="#8D1A30"></Aim>
     </div>
