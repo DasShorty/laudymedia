@@ -1,4 +1,4 @@
-<script setup lang="ts">
+<script lang="ts">
 
 import Header from "~/components/header/Header.vue";
 import Footer from "~/components/footer/Footer.vue"
@@ -7,24 +7,38 @@ import ProjectPopup from "~/components/projects/ProjectPopup.vue";
 import ThumbnailComponent from "~/components/home/ThumbnailComponent.vue";
 import axios from "axios";
 
-const currentProject = {
-  "title": "test",
-  links: [],
-  "description": "Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.",
-  "image": "https://cdn.dasshorty.de/twitch.png",
-};
+export default {
+  components: {Footer, Header, ProjectPopup, Project, ThumbnailComponent},
+  data() {
+    return {
+      projects: [],
+      currentProject: {},
+      show: false
+    }
+  },
+  methods: {
+    openPopup(project: Object): void {
 
-let projects = []
+      this.currentProject = project;
+      this.show = true;
+      document.documentElement.style.overflow = 'hidden'
 
-onMounted(() => {
+    },
+    closePopup(): void {
 
-  axios.get("http://localhost:8080/projects/").then(value => {
-    projects = value.data
-  })
+      this.currentProject = {};
+      this.show = false;
+      document.documentElement.style.overflow = 'auto'
 
-});
-
-const show = false;
+    }
+  },
+  mounted() {
+    axios.get("http://localhost:8080/projects").then(value => {
+      this.projects = value.data
+      console.log(this.projects)
+    })
+  },
+}
 
 </script>
 
@@ -33,11 +47,11 @@ const show = false;
   <ThumbnailComponent></ThumbnailComponent>
 
   <main>
-    <div class="projects" v-for="project in projects">
-      <Project :data="project"></Project>
+    <div class="projects">
+      <Project v-for="project in projects" @click="openPopup(project)" :data="project"></Project>
     </div>
 
-    <ProjectPopup :data="currentProject" :show="show"></ProjectPopup>
+    <ProjectPopup @onPopupClose="closePopup" :data="currentProject" :show="show"></ProjectPopup>
   </main>
 
   <Footer></Footer>
@@ -58,6 +72,10 @@ main {
   margin-top: 5rem;
   margin-left: 10rem;
   margin-right: 10rem;
+}
+
+Footer {
+  z-index: -1;
 }
 
 </style>

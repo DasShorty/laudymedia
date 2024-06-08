@@ -1,8 +1,13 @@
-<script setup lang="ts">
+<script lang="ts">
 
-defineProps({
-  data: {type: Object, required: true},
-})
+export default {
+  props: {
+    data: {
+      type: Object,
+      required: true
+    }
+  }
+}
 </script>
 
 <template>
@@ -11,7 +16,12 @@ defineProps({
     <img :src="data.imageRef" alt="Project Image">
     <hr>
     <h3>{{ data.title }}</h3>
-    <p>{{ data.description }}</p>
+    <div v-if="data.description.length < 50">
+      <p>{{ data.description.substring(0, 50) + "..." }}</p>
+    </div>
+    <div v-else>
+      <p>{{ data.description }}</p>
+    </div>
   </div>
 
 </template>

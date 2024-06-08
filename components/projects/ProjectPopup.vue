@@ -1,5 +1,7 @@
 <script setup lang="ts">
 
+import ProjectPopupButton from "~/components/projects/ProjectPopupButton.vue";
+
 defineProps({
 
   data: {type: Object, required: true},
@@ -14,22 +16,23 @@ defineProps({
   <div class="popup" v-if="show">
     <div class="center">
       <div class="content">
+
         <div class="title">
           <h1>{{ data.title }}</h1>
         </div>
+        <div class="close-button" @click="$emit('onPopupClose')">
+          <img src="/assets/icons/close.png" alt="Close Button">
+        </div>
         <div class="image-text">
           <div class="image">
-            <img :src="data.image" alt="Project Image">
+            <img :src="data.imageRef" alt="Project Image">
           </div>
           <div class="text">
             <p>{{ data.description }}</p>
           </div>
         </div>
         <div class="buttons">
-          <button>Test</button>
-          <button>Test</button>
-          <button>Test</button>
-          <button>Test</button>
+          <ProjectPopupButton v-for='button in data.links' :button='button'></ProjectPopupButton>
         </div>
       </div>
     </div>
@@ -99,6 +102,14 @@ defineProps({
 
 .buttons {
   margin-top: 3rem;
+  display: flex;
+}
+
+.close-button {
+  position: fixed;
+  right: 1rem;
+  top: 1rem;
+  cursor: pointer;
 }
 
 </style>
