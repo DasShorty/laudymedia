@@ -4,6 +4,8 @@
     --nav-page-title-color: #6000DA;
     --purple: #8E5BB5;
     --hr-color: #404040;
+    --web-bg: #0F0F11;
+    --web-scroller: #181818;
 }
 
 @media (prefers-color-scheme: dark) {
