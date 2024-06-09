@@ -13,10 +13,10 @@ export default {
 <template>
 
   <div class="container">
-    <img :src="data.imageRef" alt="Project Image">
+    <NuxtImg class="project-image" :src="data.imageRef" alt="Project Image" loading="lazy" placeholder></NuxtImg>
     <hr>
     <h3>{{ data.title }}</h3>
-    <div v-if="data.description.length < 50">
+    <div v-if="data.description.length > 50">
       <p>{{ data.description.substring(0, 50) + "..." }}</p>
     </div>
     <div v-else>
@@ -39,7 +39,7 @@ export default {
   cursor: pointer;
 }
 
-.container img {
+.project-image {
   display: flex;
   justify-content: center;
   align-items: center;
