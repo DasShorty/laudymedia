@@ -35,7 +35,6 @@ export default {
   mounted() {
     axios.get("http://localhost:8080/projects").then(value => {
       this.projects = value.data
-      console.log(this.projects)
     })
   },
 }
@@ -47,6 +46,11 @@ export default {
   <ThumbnailComponent></ThumbnailComponent>
 
   <main>
+
+    <div class="project-title">
+      <span>Projects</span>
+    </div>
+
     <div class="projects">
       <Project v-for="project in projects" @click="openPopup(project)" :data="project"></Project>
     </div>
@@ -61,6 +65,7 @@ export default {
 
 main {
   display: flex;
+  flex-direction: column;
   justify-content: center;
   align-items: center;
 }
@@ -69,13 +74,24 @@ main {
   display: grid;
   gap: 3rem;
   grid-template-columns: auto auto auto;
-  margin-top: 5rem;
+  margin-top: -5rem;
   margin-left: 10rem;
   margin-right: 10rem;
 }
 
 Footer {
   z-index: -1;
+}
+
+.project-title {
+  margin-top: 3rem;
+}
+
+.project-title span {
+  text-transform: uppercase;
+  color: #1A1A1A;
+  font-size: 8rem;
+  font-family: "ZenDots", sans-serif;
 }
 
 </style>
