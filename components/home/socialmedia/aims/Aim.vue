@@ -1,10 +1,13 @@
 <script lang="ts">
 
-
 export default {
   data() {
     return {
-      width: "20%"
+      observer: new IntersectionObserver(this.observerCallback(), {
+        root: null, // relative to the viewport
+        rootMargin: '0px',
+        threshold: 0.1, // trigger when 10% of the div is visible
+      })
     }
   },
   props: {
@@ -33,7 +36,34 @@ export default {
     calculateWidth() {
       const width = (this.currentCount / this.finalCount) * 100;
       return width + "%";
+    },
+    observerCallback(): IntersectionObserverCallback {
+      return (entries, observer) => {
+        entries.forEach(entry => {
+          if (entry.isIntersecting) {
+
+            console.log("Animation")
+
+            const progressBar = this.$refs.progressBar as HTMLDivElement;
+            //progressBar.style.animationDuration = "10s";
+            //progressBar.style.animation = "loadBar 10s ease-in-out infinite";
+
+            const elementById = document.getElementById("progress")!!;
+            elementById.style.animationDuration = "10s";
+            elementById.style.animation = "loadBar 10s ease-in-out infinite";
+
+            // Stop observing after the first time the element is on screen
+            observer.unobserve(entry.target);
+          }
+        });
+      }
     }
+  },
+  mounted() {
+    // Start observing the target element
+    const elementById = document.getElementById("progress")!!;
+    this.observer.observe(elementById);
+    elementById.style.setProperty("--ani-width", `${this.calculateWidth()}`);
   }
 }
 
@@ -52,7 +82,7 @@ export default {
     <div class="amount">
       <p><span id="current-amount">{{ currentCount }}</span> / {{ finalCount }}</p>
     </div>
-    <div class="progress-bar" id="progress" :style="{
+    <div ref="progressBar" class="progress-bar" id="progress" :style="{
       'background-color': barColor,
       'width': calculateWidth()
     }"></div>
@@ -91,6 +121,18 @@ p {
   width: 20rem;
   border-radius: 1.938rem;
   transition: 2s;
+}
+
+@keyframes loadBar {
+
+  0% {
+    width: 0;
+  }
+
+  100% {
+    width: var(--ani-width);
+  }
+
 }
 
 .icon {

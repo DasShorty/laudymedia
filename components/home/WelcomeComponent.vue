@@ -6,7 +6,7 @@
 
   <div class="welcome">
 
-    <img src="@/assets/image/welcome/welcome.png" class="welcome-img" alt="Welcome">
+    <img src="../../assets/image/welcome/dave-welcome.jpeg" class="welcome-img" alt="Welcome">
     <hr>
     <div class="welcome-text">
       <h3>Ich bin <span style="color: var(--purple)">Dave</span>!</h3>
@@ -28,6 +28,13 @@
 </template>
 
 <style scoped>
+
+.welcome img {
+  height: 23.688rem;
+  width: auto;
+  border-radius: 50% 1rem 50% 1rem;
+  margin-right: 2.5rem;
+}
 
 hr {
   border-radius: 1rem;
