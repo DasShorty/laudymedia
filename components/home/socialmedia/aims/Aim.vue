@@ -3,6 +3,7 @@
 export default {
   data() {
     return {
+      width: "20rem",
       observer: new IntersectionObserver(this.observerCallback(), {
         root: null, // relative to the viewport
         rootMargin: '0px',
@@ -34,8 +35,8 @@ export default {
   },
   methods: {
     calculateWidth() {
-      const width = (this.currentCount / this.finalCount) * 100;
-      return width + "%";
+      const percentage = (this.currentCount / this.finalCount) * 100;
+      this.width = percentage + "%";
     },
     observerCallback(): IntersectionObserverCallback {
       return (entries, observer) => {
@@ -45,15 +46,10 @@ export default {
             console.log("Animation")
 
             const progressBar = this.$refs.progressBar as HTMLDivElement;
-            //progressBar.style.animationDuration = "10s";
-            //progressBar.style.animation = "loadBar 10s ease-in-out infinite";
-
-            const elementById = document.getElementById("progress")!!;
-            elementById.style.animationDuration = "10s";
-            elementById.style.animation = "loadBar 10s ease-in-out infinite";
+            progressBar.classList.add("in-view")
 
             // Stop observing after the first time the element is on screen
-            observer.unobserve(entry.target);
+            observer.unobserve(progressBar);
           }
         });
       }
@@ -61,9 +57,15 @@ export default {
   },
   mounted() {
     // Start observing the target element
-    const elementById = document.getElementById("progress")!!;
-    this.observer.observe(elementById);
-    elementById.style.setProperty("--ani-width", `${this.calculateWidth()}`);
+
+    this.calculateWidth()
+
+    if ((this.currentCount / this.finalCount) * 100 > 100) {
+      this.width = "100%";
+    }
+
+    const progressBar = this.$refs.progressBar as HTMLDivElement;
+    this.observer.observe(progressBar);
   }
 }
 
@@ -82,10 +84,15 @@ export default {
     <div class="amount">
       <p><span id="current-amount">{{ currentCount }}</span> / {{ finalCount }}</p>
     </div>
-    <div ref="progressBar" class="progress-bar" id="progress" :style="{
-      'background-color': barColor,
-      'width': calculateWidth()
-    }"></div>
+    <div class="before-bar" :style="{
+      'width': width
+    }">
+      <div ref="progressBar" class="progress-bar" :style="{
+        'width': '100%',
+        'background-color': barColor
+      }">
+      </div>
+    </div>
 
   </div>
 
@@ -115,12 +122,23 @@ p {
 }
 
 .progress-bar {
+  position: relative;
+  z-index: 2;
+  height: 3.875rem;
+  border-radius: 1.938rem;
+}
+
+.before-bar {
   position: absolute;
   z-index: 1;
   height: 3.875rem;
-  width: 20rem;
+  width: 33.875rem;
   border-radius: 1.938rem;
-  transition: 2s;
+}
+
+.in-view {
+  animation: loadBar 2s;
+  animation-duration: 2s;
 }
 
 @keyframes loadBar {
@@ -130,7 +148,7 @@ p {
   }
 
   100% {
-    width: var(--ani-width);
+    width: 100%;
   }
 
 }

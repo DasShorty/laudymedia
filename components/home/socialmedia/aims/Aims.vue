@@ -1,6 +1,35 @@
-<script setup lang="ts">
+<script lang="ts">
+import axios from "axios";
+import Aim from "./Aim.vue";
 
-import Aim from "~/components/home/socialmedia/aims/Aim.vue";
+export default {
+  data() {
+    return {
+      twitter: {'currentAmount': 20, 'aimAmount': 20},
+      youtube: {'currentAmount': 20, 'aimAmount': 20},
+      twitch: {'currentAmount': 20, 'aimAmount': 20},
+      tiktok: {'currentAmount': 20, 'aimAmount': 20},
+    }
+  },
+  components: {
+    Aim
+  },
+  mounted() {
+    axios.get("http://localhost:8080/public/aims?platform=twitter").then((res) => {
+      this.twitter = res.data;
+    });
+    axios.get("http://localhost:8080/public/aims?platform=youtube").then((res) => {
+      this.youtube = res.data;
+    });
+    axios.get("http://localhost:8080/public/aims?platform=twitch").then((res) => {
+      this.twitch = res.data;
+    });
+    axios.get("http://localhost:8080/public/aims?platform=tiktok").then((res) => {
+      this.tiktok = res.data;
+    });
+  },
+}
+
 </script>
 
 <template>
@@ -13,17 +42,17 @@ import Aim from "~/components/home/socialmedia/aims/Aim.vue";
   <div class="aims-list">
 
     <div class="left-side">
-      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='413'
-           :final-count='500' bar-color="#48247D"></Aim>
-      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='70'
-           :final-count='100' bar-color="#8D1A30"></Aim>
+      <Aim icon="https://cdn.laudymedia.de/twitch.png" count-type="FOLLOWER" :current-count='twitch.currentAmount'
+           :final-count='twitch.aimAmount' bar-color="#48247D"></Aim>
+      <Aim icon="https://cdn.laudymedia.de/tiktok.png" count-type="FOLLOWER" :current-count='tiktok.currentAmount'
+           :final-count='tiktok.aimAmount' bar-color="#8D1A30"></Aim>
     </div>
 
     <div class="right-side">
-      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="ABONNENTEN" :current-count='42'
-           :final-count='100' bar-color="#A60000"></Aim>
-      <Aim icon="https://cdn.dasshorty.de/twitch.png" count-type="FOLLOWER" :current-count='220'
-           :final-count='1000' bar-color="#249EF1"></Aim>
+      <Aim icon="https://cdn.laudymedia.de/youtube.png" count-type="ABONNENTEN" :current-count='youtube.currentAmount'
+           :final-count='youtube.aimAmount' bar-color="#A60000"></Aim>
+      <Aim icon="https://cdn.laudymedia.de/twitter.png" count-type="FOLLOWER" :current-count='twitter.currentAmount'
+           :final-count='twitter.aimAmount' bar-color="#249EF1"></Aim>
     </div>
 
   </div>
