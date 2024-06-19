@@ -33,7 +33,7 @@ export default {
     }
   },
   mounted() {
-    axios.get("http://localhost:8080/projects").then(value => {
+    axios.get("http://localhost:8080/public/projects").then(value => {
       this.projects = value.data
     })
   },

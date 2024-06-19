@@ -1,13 +1,17 @@
 <script lang="ts">
 
+import axios from "axios";
+
 export default {
   data() {
     return {
-      width: "20rem",
+      width: "0%",
+      currentCount: 0,
+      finalCount: 0,
       observer: new IntersectionObserver(this.observerCallback(), {
         root: null, // relative to the viewport
         rootMargin: '0px',
-        threshold: 0.1, // trigger when 10% of the div is visible
+        threshold: 0.3, // trigger when 10% of the div is visible
       })
     }
   },
@@ -20,13 +24,9 @@ export default {
       type: String,
       required: true,
     },
-    currentCount: {
-      type: Number,
-      required: true
-    },
-    finalCount: {
-      type: Number,
-      required: true
+    platform: {
+      type: String,
+      required: true,
     },
     barColor: {
       type: String,
@@ -34,7 +34,31 @@ export default {
     }
   },
   methods: {
+
+    async requestData() {
+
+      axios.get(`http://localhost:8080/public/aims?platform=${this.platform}`).then(res => {
+
+        this.finalCount = res.data.aimAmount;
+        this.currentCount = res.data.currentAmount;
+
+        this.calculateWidth()
+        console.log("Width: " + this.width)
+
+        if ((this.currentCount / this.finalCount) * 100 > 100) {
+          this.width = "100%";
+        }
+
+      })
+
+    },
     calculateWidth() {
+
+      console.log("Current: " + this.currentCount)
+      console.log("Max: " + this.finalCount)
+      console.log("Percentage: " + this.currentCount / this.finalCount)
+      console.log("Percentage: " + this.currentCount / this.finalCount)
+
       const percentage = (this.currentCount / this.finalCount) * 100;
       this.width = percentage + "%";
     },
@@ -55,14 +79,10 @@ export default {
       }
     }
   },
-  mounted() {
+  async mounted() {
     // Start observing the target element
 
-    this.calculateWidth()
-
-    if ((this.currentCount / this.finalCount) * 100 > 100) {
-      this.width = "100%";
-    }
+    await this.requestData();
 
     const progressBar = this.$refs.progressBar as HTMLDivElement;
     this.observer.observe(progressBar);
