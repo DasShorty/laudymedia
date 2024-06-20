@@ -1,6 +1,6 @@
 <script setup lang="ts">
 import NavItem from "@/components/header/navigator/NavItem.vue";
-import BurgerMenu from "~/components/header/navigator/BurgerMenu.vue";
+import BurgerMenu from "@/components/header/navigator/BurgerMenu.vue";
 
 let open = false;
 
@@ -28,7 +28,7 @@ function toggleMenu() {
       <NavItem text="Kontakt" link="/kontakt"></NavItem>
     </div>
     <div class="burger-menu"  @click="toggleMenu()">
-      <img src="../../../assets/icons/burger-menu.png" alt="menu">
+      <img src="@/assets/icons/burger-menu.png" alt="menu">
     </div>
     <div id="burger-menu">
       <BurgerMenu></BurgerMenu>
