@@ -18,7 +18,6 @@
         Stimme auch für <span style="color: #82F7FF">Voice-Over</span> genutzt...</p>
 
       <div class="button">
-        <img src="@/assets/image/welcome/web.png" alt="Web">
         <p>Mehr erfahren</p>
       </div>
     </div>
@@ -29,9 +28,11 @@
 
 <style scoped>
 
+
+
 .welcome img {
-  height: 23.688rem;
-  width: auto;
+  height: 263px;
+  width: 379px;
   border-radius: 50% 1rem 50% 1rem;
   margin-right: 2.5rem;
 }
@@ -43,6 +44,7 @@ hr {
 
 .welcome {
   display: flex;
+  align-items: center;
   flex-direction: row;
   margin-left: 19rem;
   margin-right: 19rem;
@@ -70,13 +72,14 @@ h3 {
   margin-top: 5rem;
   font-size: 1.125rem;
   border-radius: 10px;
-  background: linear-gradient(90deg, #49315B 0%, #101010 100%);
+  background: linear-gradient(90deg, #49315B 0%, #3d263d 100%);
   align-items: center;
   justify-content: center;
   padding-left: 0.05rem;
   padding-right: 0.05rem;
   width: 12rem;
   height: 1.875rem;
+  transition: 0.3s;
 }
 
 .button:hover {
@@ -85,9 +88,20 @@ h3 {
   cursor: pointer;
 }
 
-.button img {
-  width: 20px;
-  height: 20px;
+@media (max-width: 1200px) {
+  .welcome {
+    display: flex;
+    flex-direction: column;
+    font-size: 1.25rem;
+    margin-top: 5rem;
+    margin-left: 4rem;
+    margin-right: 4rem;
+  }
+
+  .welcome-text {
+    margin-left: 0;
+    margin-top: 1rem;
+  }
 }
 
 </style>

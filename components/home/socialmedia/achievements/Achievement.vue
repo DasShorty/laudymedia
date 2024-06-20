@@ -61,5 +61,73 @@ defineProps({
   justify-content: center;
 }
 
+@media (max-width: 1000px) {
+  .container {
+    width: 45rem;
+  }
+  .container img {
+    width: 5rem;
+    height: 5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 35rem;
+  }
+  .container img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (max-width: 1000px) {
+  .container {
+    width: 35rem;
+  }
+  .container img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+@media (max-width: 650px) {
+  .container {
+    display: flex;
+    flex-direction: column;
+    margin: 1rem;
+    padding: 1rem;
+  }
+  .container img {
+    width: 3.5rem;
+    height: 3.5rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .container {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .container {
+    width: 23rem;
+  }
+}
+
+@media (max-width: 420px) {
+  .container {
+    width: 22rem;
+  }
+}
+
+
+
 
 </style>

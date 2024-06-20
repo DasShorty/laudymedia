@@ -1,5 +1,29 @@
 <script setup lang="ts">
 
+import axios from "axios";
+
+let content = {
+  forename: "",
+  sirname: "",
+  email: "",
+  company: "",
+  message: ""
+}
+
+async function sendMail() {
+  await axios.post("http://localhost:8080/public/contact", content).then(value => {
+    if (value.status == 200) {
+      content.forename = ""
+      content.sirname = ""
+      content.email = ""
+      content.company = ""
+      content.message = ""
+    } else {
+      // display a message that something went wrong!
+    }
+  })
+}
+
 </script>
 
 <template>
@@ -14,15 +38,15 @@
 
     <form>
       <div class="names">
-        <input type="text" required placeholder="Vorname*">
-        <input type="text" required placeholder="Nachname*">
+        <input v-model="content.forename" type="text" required placeholder="Vorname*">
+        <input v-model="content.sirname" type="text" required placeholder="Nachname*">
       </div>
-      <input type="email" required placeholder="E-Mail*">
-      <input type="text" placeholder="Firma">
-      <textarea placeholder="Nachricht*" required rows="10" cols="40"></textarea>
+      <input v-model="content.email" type="email" required placeholder="E-Mail*">
+      <input v-model="content.company" type="text" placeholder="Firma">
+      <textarea v-model="content.message" placeholder="Nachricht*" required rows="10" cols="40"></textarea>
       <div class="form-bottom">
         <span>Pflichtfeld *</span>
-        <button type="submit">Senden</button>
+        <button @click="sendMail" type="submit">Senden</button>
       </div>
     </form>
 
@@ -106,5 +130,6 @@ button:hover {
 .names input {
   width: 15rem;
 }
+
 
 </style>

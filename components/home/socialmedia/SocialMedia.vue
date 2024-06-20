@@ -46,4 +46,34 @@ import Aims from "~/components/home/socialmedia/aims/Aims.vue";
   margin-bottom: 10rem;
 }
 
+@media (max-width: 1200px) {
+  .social-media-container span {
+    font-size: 6rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .social-media-container span {
+    font-size: 4rem;
+  }
+  .achievements {
+    margin-top: -3.5rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .social-media-container span {
+    font-size: 3rem;
+  }
+  .achievements {
+    margin-top: 0;
+  }
+}
+
+@media (max-width: 460px) {
+  .social-media-container span {
+    font-size: 2.7rem;
+  }
+}
+
 </style>

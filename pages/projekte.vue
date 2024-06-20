@@ -94,4 +94,40 @@ Footer {
   font-family: "ZenDots", sans-serif;
 }
 
+@media (max-width: 1200px) {
+  .project-title span {
+    font-size: 6rem;
+  }
+  .projects {
+    display: grid;
+    flex-direction: column;
+    gap: 3rem;
+    grid-template-columns: auto auto;
+    margin-top: -2rem;
+    margin-left: 10rem;
+    margin-right: 10rem;
+  }
+}
+
+@media (max-width: 900px) {
+  .project-title span {
+    font-size: 4rem;
+  }
+  .projects {
+    display: flex;
+    flex-direction: column;
+    margin-top: 2rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .project-title span {
+    font-size: 3rem;
+  }
+
+  .projects {
+    margin-top: 2rem;
+  }
+}
+
 </style>

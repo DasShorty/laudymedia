@@ -202,4 +202,35 @@ p {
   font-size: 1.25rem;
 }
 
+@media (max-width: 1200px) {
+  .bar, .before-bar {
+    width: 40rem;
+  }
+}
+@media (max-width: 700px) {
+  .bar, .before-bar {
+    width: 30rem;
+  }
+}
+
+@media (max-width: 630px) {
+  .bar, .before-bar {
+    width: 25rem;
+  }
+}
+
+@media (max-width: 460px) {
+  .bar, .before-bar {
+    width: 20rem;
+  }
+  .amount {
+    font-size: 1.7rem;
+  }
+
+  .type {
+    font-size: 0.8rem;
+  }
+}
+
+
 </style>

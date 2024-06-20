@@ -1,5 +1,4 @@
 <script setup>
-
 import ThemeToggle from "@/components/header/ThemeToggle.vue";
 import NavItems from "@/components/header/navigator/NavItems.vue";
 </script>
@@ -9,7 +8,9 @@ import NavItems from "@/components/header/navigator/NavItems.vue";
     <div class="nav-container">
       <NavItems></NavItems>
     </div>
-    <ThemeToggle></ThemeToggle>
+    <div class="theme-toggle">
+      <ThemeToggle></ThemeToggle>
+    </div>
   </header>
 </template>
 
@@ -28,5 +29,19 @@ header {
   display: flex;
   justify-content: center;
   padding-left: 99px;
+}
+
+@media (max-width: 650px) {
+  .theme-toggle {
+    display: none;
+  }
+
+  .nav-container {
+    flex-grow: 10;
+    display: flex;
+    justify-content: end;
+    margin-top: 1rem;
+    margin-bottom: 1rem;
+  }
 }
 </style>
